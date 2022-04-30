@@ -17,6 +17,12 @@ geoAPI = "<API key>"      # Google maps geocoding API key
 
 # Constants
 CACHE_FILENAME = "cache.json"
+STATE_CODES = ["AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "DC",
+               "FL", "GA", "HI", "ID", "IL", "IN", "IA", "KS", "KY",
+               "LA", "ME", "MD", "MA", "MI", "MN", "MS", "MO", "MT",
+               "NE", "NV", "NH", "NJ", "NM", "NY", "NC", "ND", "OH",
+               "OK", "OR", "PA", "PR", "RI", "SC", "SD", "TN", "TX",
+               "UT", "VT", "VA", "VI", "WA", "WV", "WI", "WY"]
 
 
 class Park():
@@ -139,13 +145,13 @@ def requestForecast(coords, units="imperial"):
     return [WeatherPoint(json, coords) for json in weatherJson['list']]
 
 
-def requestParks(cacheDict, state=None):
+def requestParks(cacheDict, state="", limit=500):
     baseUrl = 'https://developer.nps.gov/api/v1/parks'
     cacheKey = generateCacheKey(baseUrl, [state])
     if cacheKey in cacheDict:
         parkJson = cacheDict[cacheKey]
     else:
-        url = f'{baseUrl}?stateCode={state}&api_key={govAPI}'
+        url = f'{baseUrl}?stateCode={state}&limit={limit}&api_key={govAPI}'
         parkJson = requestJson(url)
         cacheDict[cacheKey] = parkJson
     return [Park(json) for json in parkJson['data']]

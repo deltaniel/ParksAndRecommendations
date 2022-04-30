@@ -11,9 +11,9 @@ import requests
 import datetime as dt
 
 # API keys
-owAPI = "45e89aedd893d8d60eae71ee42c33996"  # OpenWeather API key
-govAPI = "iEeVJkKwrPyXxjZC6gExlca1PZSl9ZANeMe9EFcX"     # data.gov API key
-geoAPI = "AIzaSyAFHo2RwFBtljmZr5OoBeZr2oiVCCYqSfE"      # Google maps geocoding API key
+owAPI = ""  # OpenWeather API key
+govAPI = ""     # data.gov API key
+geoAPI = ""      # Google maps geocoding API key
 
 # Constants
 CACHE_FILENAME = "cache.json"
@@ -188,6 +188,7 @@ def main():
     parks = sorted(parks, key=lambda x: x.cloudiness)
     recPark = parks[0]
     cp = int(100 - recPark.cloudiness)   # % clear skies in the next four days
+
     print(f'I recommend you go visit {recPark.name}!\nIt will be {cp}% clear skies over the next four days.')
     activities = ', '.join(recPark.activities)
     print(f'This {recPark.designation} offers the following activities: {activities}')

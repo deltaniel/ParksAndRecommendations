@@ -11,9 +11,9 @@ import requests
 import datetime as dt
 
 # API keys
-owAPI = ""  # OpenWeather API key
-govAPI = ""     # data.gov API key
-geoAPI = ""      # Google maps geocoding API key
+owAPI = "<API key>"              # OpenWeather API key
+govAPI = "<API key>"     # data.gov API key
+geoAPI = "<API key>"      # Google maps geocoding API key
 
 # Constants
 CACHE_FILENAME = "cache.json"
